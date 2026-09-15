@@ -1,0 +1,5 @@
+chapters/
+*.gguf
+.ollama/
+.DS_Store
+Thumbs.db
