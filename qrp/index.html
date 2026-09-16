@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>QRP — Robin ticket</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font: 15px/1.45 ui-sans-serif, system-ui; background: #07080b; color: #d7e3ee; }
+    main { max-width: 720px; margin: 0 auto; padding: 28px 18px 64px; }
+    h1 { font-weight: 600; letter-spacing: .04em; color: #9aa6b8; font-size: 13px; text-transform: uppercase; }
+    label { display: block; margin: 14px 0 4px; color: #9aa6b8; font-size: 12px; }
+    input, textarea, select { width: 100%; box-sizing: border-box; background: #101218; color: #d7e3ee; border: 1px solid #2a3140; padding: 8px 10px; border-radius: 6px; }
+    textarea { min-height: 64px; }
+    button { margin-top: 18px; background: #c45c3e; color: #07080b; border: 0; padding: 10px 16px; border-radius: 6px; font-weight: 650; cursor: pointer; }
+    pre { white-space: pre-wrap; background: #101218; border: 1px solid #2a3140; padding: 14px; border-radius: 6px; margin-top: 18px; }
+    p.note { color: #9aa6b8; font-size: 13px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>QRP live ticket</h1>
+  <p class="note">Local form. Nothing leaves this page. Copy the ticket into Grok, Comfy, or any generator. Adult only.</p>
+  <label>Identity lock</label>
+  <textarea id="identity" placeholder="exact adult face, hair, glasses, marks"></textarea>
+  <label>Body</label>
+  <input id="body" placeholder="adult body, no age play" />
+  <label>Wardrobe</label>
+  <input id="wardrobe" />
+  <label>Pose</label>
+  <input id="pose" />
+  <label>Camera</label>
+  <input id="camera" placeholder="50mm, eye level" />
+  <label>Light</label>
+  <input id="light" />
+  <label>Setting</label>
+  <input id="setting" />
+  <label>Explicit</label>
+  <select id="explicit">
+    <option>none</option>
+    <option>lingerie</option>
+    <option>nude</option>
+    <option>explicit act</option>
+  </select>
+  <label>Must keep</label>
+  <input id="keep" />
+  <label>Must not</label>
+  <input id="not" />
+  <button type="button" id="go">Build ticket</button>
+  <pre id="out">QRP v1</pre>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+$("go").onclick = () => {
+  const ticket = `QRP v1\nidentity: ${$("identity").value.trim() || "(name her)"}\nbody: ${$("body").value.trim() || "adult"}\nwardrobe: ${$("wardrobe").value.trim() || "unspecified"}\npose: ${$("pose").value.trim() || "unspecified"}\ncamera: ${$("camera").value.trim() || "50mm"}\nlight: ${$("light").value.trim() || "soft indoor"}\nsetting: ${$("setting").value.trim() || "unspecified"}\nexplicit: ${$("explicit").value}\nmust_keep: ${$("keep").value.trim() || "identity lock"}\nmust_not: ${$("not").value.trim() || "new face, minor styling, beautify"}\nverdict_after: ACCEPT or REJECT + one sentence`;
+  $("out").textContent = ticket;
+  navigator.clipboard.writeText(ticket).catch(() => {});
+};
+</script>
+</body>
+</html>
